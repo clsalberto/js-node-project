@@ -38,15 +38,13 @@ class App {
   }
 
   exceptionHandler() {
-    this.server.use(
-      async (error, request, response, next) => {
-        if (process.env.NODE_ENV === 'development') {
-          return response.json(error)
-        }
-
-        return response.status(500).json({ error: 'Internal server error' })
+    this.server.use(async (error, request, response, next) => {
+      if (process.env.NODE_ENV === 'development') {
+        return response.json(error)
       }
-    )
+
+      return response.status(500).json({ error: 'Internal server error' })
+    })
   }
 }
 
